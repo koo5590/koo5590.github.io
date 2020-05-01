@@ -4,7 +4,7 @@ title: About me
 subtitle: Hi, it's me
 ---
 
-My name is Hyunjung. I'm currently living in Korea(the South one).
+My name is Hyunjung
 
 
 ### my history
