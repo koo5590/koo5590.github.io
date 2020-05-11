@@ -58,3 +58,5 @@ tags: [set, data_structure, c++]
    //int_set.lower_bound(4)는 4를 가리킴, int_set.upper_bound(6)는 7을 가리킴
    //int_set = {1,2,3,7,8,9}
    ~~~
+  
+  <br>참고자료: "Guide to Competitive Programming", "C++ Reference"
