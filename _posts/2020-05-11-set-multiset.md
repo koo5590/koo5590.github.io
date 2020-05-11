@@ -1,0 +1,60 @@
+---
+layout: post
+title: Set
+tags: [set, data_structure, c++]
+---
+
+### 집합 자료구조: set
+#### 1. 기본 연산: 원소 추가, 원소 탐색, 원소 삭제
+#### 2. c++ 표준 라이브러리
+  <b>\<set></b>: 균형 잡힌 이진 탐색 트리를 기반으로 만들어짐, 원소들이 정렬됨 (time complexity: O(logn))
+  1. associative: Elements are referenced by their key and not by their absolute position in the container
+  2. ordered: Elements follow a strict order at all times
+  3. set: The value of an element is also the key used to identify it 
+  4. <b>unique keys: All elements are unique</b> (set의 모든 원소는 서로 다르다)
+#### 3. methods 
+##### 3-1. 원소 추가: insert(element), emplace(args)
+   <b>insert()</b>는 set에 element를 추가한다. 이미 존재하면 추가하지 않는다.
+   ~~~cpp
+   set<int> int_set;
+   int_set.insert(3);
+   int_set.insert(4);
+   ~~~
+   <b>emplace()</b>는 set에 새로운 element를 추가하는데, 이 element 생성시 constructor의 인자로 args를 넘긴다. 
+   원소 삽입에 성공하면, pair<iterator,true>를 반환하는데, iterator는 새로 추가된 원소를 가리킨다.
+   이미 값은 key값이 존재하여 원소 삽입에 실패하면, pair<iterator,false>를 반환하는데, iterator는 set에서 중복되는 원소를 가리킨다.
+##### 3-2. 원소 탐색: count(element), find(element)
+   1. <b>count()</b>는 element의 개수를 반환한다. 하지만 set에는 중복되는 원소가 없으므로, 결국 count()의 반환값은 1아니면 0이다.
+   ~~~cpp
+   int_set.count(4); //1을 반환
+   int_set.count(1); //0을 반환
+   ~~~
+   2. <b>find()</b>는 element를 가리키는 iterator를 반환한다. element가 set에 없다면 end()를 반환한다.
+   ~~~cpp
+   auto it = int_set.find(1); //it = int_set.end()
+   ~~~
+##### 3-3. 원소 삭제: erase(element), clear()
+   1. <b>erase()</b>는 element를 set에서 삭제한다
+   ~~~cpp
+   int_set.erase(3);
+   ~~~
+   iterator를 사용하여 원하는 element를 삭제하거나 삭제할 element들의 범위를 지정할 수도 있다.
+   ~~~cpp
+   //new_set = {1,2,3,4,5,6}
+   auto it = new_set.find(3);
+   new_set.erase(it); //new_set = {1,2,4,5,6}
+   //new_set.erase(it,it2): it가 가리키는 원소부터 it2가 가리키는 이전의 원소까지 전부 삭제한다
+   ~~~
+   2. <b>clear()</b>는 set의 모든 원소를 삭제한다. (size는 0이 됨)
+##### 3-4. 크기: empty(), size()
+   1. <b>empty()</b>는 set의 크기가 0이면 true를 반환한다.
+   2. <b>size()</b>는 set의 크기를 반환한다.
+##### 3-5. 범위: lower_bound(val), upper_bound(val)
+   1. <b>lower_bound()</b>는 val보다 작거나 같은 key값을 가지는 element들 중 가장 큰 값을 가리키는 iterator를 반환한다
+   2. <b>upper_bound()</b>는 val보다 큰 key값을 가지는 element들 중 가장 작은 값을 가리키는 iterator를 반환한다
+   ~~~cpp
+   //int_set = {1,2,3,4,5,6,7,8,9,10}
+   int_set.erase(int_set.lower_bound(4), int_set.upper_bound(6));
+   //int_set.lower_bound(4)는 4를 가리킴, int_set.upper_bound(6)는 7을 가리킴
+   //int_set = {1,2,3,7,8,9}
+   ~~~
