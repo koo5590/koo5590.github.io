@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Recursive Algorithms
-tags: [algorithms, recursive]
+tags: [algorithms, recursion]
 ---
 
 ## 재귀적 알고리즘
